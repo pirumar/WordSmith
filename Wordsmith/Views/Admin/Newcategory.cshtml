@@ -1,0 +1,51 @@
+﻿@using Wordsmith.Models
+
+
+@model SelectList
+
+@{
+    ViewBag.Title = "Newcategory";
+    Layout = "~/Views/Shared/_adminMasterLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    @using (Ajax.BeginForm("addCategory", "Admin", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "SuccessAddCategory", OnFailure = "ErrorAddCategory", InsertionMode = InsertionMode.Replace, UpdateTargetId = "personlist" }))
+    {
+        <div class="card">
+            <div class="card-header">
+                <strong>Basic Form</strong> Elements
+            </div>
+            <div class="card-body card-block">
+
+
+
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">parent Category</label></div>
+                    <div class="col-12 col-md-9">
+
+                        @Html.Raw(@Html.DropDownList("IDParentCategory", Model, "Select Category", new { @class = "css-class" }))
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Post Name</label></div>
+                    <div class="col-12 col-md-9">
+                        @Html.TextBox("CategoryName", "", new { placeholder = "Category Name", @class = "form-control" })
+                        <small class="form-text text-muted">This is a help text</small>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Submit
+                </button>
+                <button type="reset" class="btn btn-danger btn-sm">
+                    <i class="fa fa-ban"></i> Reset
+                </button>
+            </div>
+        </div>
+    }
+</div>

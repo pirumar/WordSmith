@@ -49,6 +49,12 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -166,11 +172,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\metodlar.cs" />
+    <Compile Include="Models\OperationsResult.cs" />
+    <Compile Include="Models\Postlist.cs" />
     <Compile Include="Models\tCategorys.cs" />
     <Compile Include="Models\tPosts.cs" />
-    <Compile Include="Models\tSelectedCategorys.cs" />
+    <Compile Include="Models\tTags.cs" />
     <Compile Include="Models\tUserRole.cs" />
     <Compile Include="Models\tUsers.cs" />
+    <Compile Include="Models\Upload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +243,7 @@
     <Content Include="Content\font-awesome\webfonts\fa-regular-400.svg" />
     <Content Include="Content\font-awesome\webfonts\fa-solid-900.svg" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\vendor.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -341,6 +351,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\plugins.js" />
+    <Content Include="Scripts\tagSplit.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -358,6 +369,11 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_adminMasterLayout.cshtml" />
     <Content Include="Views\Admin\Newcategory.cshtml" />
+    <Content Include="Views\Admin\_PartialCategory.cshtml" />
+    <Content Include="Views\Admin\newPost.cshtml" />
+    <Content Include="Views\Home\PartialCategory.cshtml" />
+    <Content Include="Views\Home\PartialPopularPost.cshtml" />
+    <Content Include="Views\Home\PartialIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

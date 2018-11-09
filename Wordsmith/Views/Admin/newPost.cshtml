@@ -1,0 +1,71 @@
+﻿@model SelectList
+@{
+    ViewBag.Title = "newPost";
+    Layout = "~/Views/Shared/_adminMasterLayout.cshtml";
+}
+
+<div class="col-lg-12">
+    @using (Ajax.BeginForm("addPost", "Admin", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "SuccessAdd", OnFailure = "ErrorAddCategory", InsertionMode = InsertionMode.Replace, UpdateTargetId = "newPost" }, new { enctype = "multipart/form-data", onkeydown = "return event.keyCode!=13" }))
+    {
+        <div class="card">
+            <div class="card-header">
+                <strong>Add</strong> Category
+            </div>
+            <div class="card-body card-block">
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">parent Category</label></div>
+                    <div class="col-12 col-md-9">
+                        <div class="target">
+
+                            @{ Html.RenderPartial("_PartialCategory");}
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Post Title</label></div>
+                    <div class="col-12 col-md-9">
+                        @Html.TextBox("PostTitle", "", new { placeholder = "Post Title", @class = "form-control" })
+                    </div>
+                </div>
+
+
+
+
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Post Text</label></div>
+                    <div class="col-12 col-md-9">
+                        @Html.TextBox("PostText", "", new { placeholder = "Post Text", @class = "form-control" })
+                        @Html.ValidationSummary()
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Post Text</label></div>
+                    <div class="col-12 col-md-9">
+                        <input class="form-control" name="Tags" id="Tags" data-role="tagsinput" />
+                    </div>
+                </div>
+
+
+                <div class="row form-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="Image" id="Image" aria-describedby="inputGroupFileAddon03">
+                        <label class="custom-file-label" for="PostImage">Resim Seç</label>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-sm" id="btnAddpost">
+                    <i class="fa fa-dot-circle-o"></i> Submit
+                </button>
+                <button type="reset" class="btn btn-danger btn-sm" id="reset" name="reset">
+                    <i class="fa fa-ban"></i> Reset
+                </button>
+            </div>
+        </div>
+    }
+</div>

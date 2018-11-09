@@ -1,0 +1,117 @@
+﻿
+@using Wordsmith.Models;
+
+@using PagedList
+@using PagedList.Mvc
+@using Wordsmith.Controllers
+@model IPagedList<tPosts>
+
+
+<!-- featured
+    ================================================== -->
+<section class="s-featured">
+    <div class="row">
+        <div class="col-full">
+
+            <div class="featured-slider featured" data-aos="zoom-in">
+                @foreach (Wordsmith.Models.tPosts item in Model)
+                {
+                    if (@item.Slider == 1)
+                    {
+
+                        <div class="featured__slide">
+                            <div class="entry">
+
+                                <div class="entry__background" style="background-image:url('@item.PostImage');"></div>
+
+                                <div class="entry__content">
+                                    @if (item.TCategorys == null)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        foreach (var cat in item.TCategorys)
+                                        {
+                                            <span class="entry__category"><a href="#0">@Server.HtmlDecode(cat.CategoryName)</a></span>
+
+                                        }
+                                    }
+
+                                    <div class="entry__info">
+                                        <a href="#0" class="entry__profile-pic">
+                                            <img class="avatar" src="@item.tUsers.UserImage" alt="">
+                                        </a>
+                                        <ul class="entry__meta">
+
+                                            <li><a href="#0">@item.tUsers.UserName</a></li>
+                                            <li>@item.PostDate.ToShortDateString()</li>
+                                        </ul>
+                                    </div>
+                                </div> <!-- end entry__content -->
+
+                            </div> <!-- end entry -->
+                        </div> <!-- end featured__slide -->
+                    }
+
+                }
+            </div> <!-- end featured -->
+
+        </div> <!-- end col-full -->
+    </div>
+</section> <!-- end s-featured -->
+<!-- s-content
+================================================== -->
+<section class="s-content">
+
+    <div class="row entries-wrap wide">
+        <div class="entries" id="_postList">
+            @foreach (Wordsmith.Models.tPosts item in Model.OrderByDescending(x => x.PostDate))
+            {
+
+
+                <article class="col-block">
+
+                    <div class="item-entry" data-aos="zoom-in">
+                        <div class="item-entry__thumb">
+                            <a href="single-standard.html" class="item-entry__thumb-link">
+                                <img src="@item.PostImage"
+                                     srcset="@item.PostImage 1x, @item.PostImage 2x" alt="">
+                            </a>
+                        </div>
+
+                        <div class="item-entry__text">
+                            <div class="item-entry__cat">
+                                @foreach (var cat in item.TCategorys)
+                                {
+                                    <a href="category.html">@Server.HtmlDecode(cat.CategoryName)</a>
+
+                                }
+                            </div>
+
+                            <h1 class="item-entry__title"><a href="single-standard.html">@item.PostTitle</a></h1>
+
+                            <div class="item-entry__date">
+                                <a href="single-standard.html">@item.PostDate.ToShortDateString()</a>
+                            </div>
+                        </div>
+                    </div> <!-- item-entry -->
+
+                </article> <!-- end article -->
+            }
+
+        </div> <!-- end entries -->
+    </div> <!-- end entries-wrap -->
+
+    <div class="row pagination-wrap">
+        <div class="col-full">
+            <nav class="pgn" data-aos="fade-up">
+                <ul>
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "_postList" }))
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</section> <!-- end s-content -->

@@ -1,0 +1,16 @@
+﻿@model List<Wordsmith.Models.tPosts>
+
+@foreach (var item in Model.Take(10).OrderByDescending(x=>x.PostRead))
+{
+
+    <article class="col-block popular__post">
+        <a href="#0" class="popular__thumb">
+            <img src="@item.PostImage" alt="">
+        </a>
+        <h5>@item.PostTitle</h5>
+        <section class="popular__meta">
+            <span class="popular__author"><span>By</span> <a href="#0">@item.tUsers.UserName</a></span>
+            <span class="popular__date"><span>on</span> <time datetime="@item.PostDate.ToString("MM dd yyyy")">@item.PostDate.ToString("MM dd yyyy")</time></span>
+        </section>
+    </article>
+}
